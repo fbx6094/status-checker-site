@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Checker</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+        }
+        .plate {
+            background: white;
+            padding: 30px 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .controls {
+            text-align: center;
+        }
+        .controls p {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        /* Стиль простых синих ссылок */
+        .status-link {
+            color: #0000ee;
+            text-decoration: underline;
+            margin: 0 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .status-link:hover {
+            color: #551a8b; /* Цвет при наведении, как у классических ссылок */
+        }
+        #status-value {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="plate">
+        Status: <span id="status-value">Off</span>
+    </div>
+
+    <div class="controls">
+        <p>изменение статуса по команде</p>
+        <a href="?status=on" class="status-link">on</a>
+        <a href="?status=off" class="status-link">off</a>
+        <p>можно изменять статус просто добавив в адресную строку "?status=on" или "?status=off"</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const statusParam = urlParams.get('status');
+        const display = document.getElementById('status-value');
+
+        if (statusParam && statusParam.toLowerCase() === 'on') {
+            display.textContent = 'On';
+            display.style.color = '#28a745';
+        } else {
+            display.textContent = 'Off';
+            display.style.color = '#dc3545';
+        }
+    </script>
+</body>
+</html>
